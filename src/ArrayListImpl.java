@@ -4,15 +4,7 @@
  *
  */
 public class ArrayListImpl implements List{
-	Object[] arrayData = new Object[1];
-	
-	/**
-	 * This variable is the current index we have for our data arrays
-	 * so if we have an array length of 10, but only 3 items,
-	 * this index would be 3, not 2
-	 */
-	
-	private int lastIndex = 0;
+	Object[] arrayData = new Object[0];
 	
 	public boolean isEmpty() {
 		return (arrayData.length == 0);
@@ -40,7 +32,8 @@ public class ArrayListImpl implements List{
 		if(index < 0 || index >= arrayData.length) {
 			newDataObject.errorSet = ErrorMessage.INDEX_OUT_OF_BOUNDS;
 		} else {
-			//@todo
+			this.arrayData[index] = null;
+			this.cleanupArray();
 		}
 		return newDataObject;
 	}
@@ -54,7 +47,7 @@ public class ArrayListImpl implements List{
 			if(item == null) {
 				newDataObject.errorSet = ErrorMessage.INVALID_ARGUMENT;
 			} else {
-				//@todo
+				//TODO
 			}
 		}
 		return newDataObject;
@@ -65,18 +58,36 @@ public class ArrayListImpl implements List{
 		if(item == null) {
 			newDataObject.errorSet = ErrorMessage.INVALID_ARGUMENT;
 		} else {
-			this.lastIndex++;
 			// Create larger version of current array
-			Object[] tempArray = new Object[this.lastIndex];
+			Object[] tempArray = new Object[this.arrayData.length + 1];
 			// Clone everything
 			System.arraycopy(this.arrayData, 0, tempArray, 0, this.arrayData.length);
 			
 			this.arrayData = tempArray;
 			
 			newDataObject.setObject(item);
-			arrayData[this.lastIndex - 1] = newDataObject;
+			arrayData[this.arrayData.length - 1] = newDataObject;
 		}
 		return newDataObject;
 	}
 	
+	// This method will remove all null values from the array
+	private void cleanupArray() {
+		int size = 0;
+		Object[] tempArray = new Object[size];
+		// Loop through each item
+		for(int i = 0; i < this.arrayData.length; i++) {
+			System.out.println(this.arrayData[i]);
+			if(this.arrayData[i] != null) {
+				size++;
+				if(size < this.arrayData.length) {
+					// Append to end of array;
+					tempArray[tempArray.length - 1] = this.arrayData[i];
+				} else {
+					System.arraycopy(this.arrayData, 0, tempArray, 0, this.arrayData.length); // Destination array is smaller
+				}
+			}
+		}
+		this.arrayData = tempArray;
+	}
 }

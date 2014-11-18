@@ -73,21 +73,25 @@ public class ArrayListImpl implements List{
 	
 	// This method will remove all null values from the array
 	private void cleanupArray() {
+		// Calculating new array size
 		int size = 0;
-		Object[] tempArray = new Object[size];
-		// Loop through each item
 		for(int i = 0; i < this.arrayData.length; i++) {
-			System.out.println(this.arrayData[i]);
 			if(this.arrayData[i] != null) {
 				size++;
-				if(size < this.arrayData.length) {
-					// Append to end of array;
-					tempArray[tempArray.length - 1] = this.arrayData[i];
-				} else {
-					System.arraycopy(this.arrayData, 0, tempArray, 0, this.arrayData.length); // Destination array is smaller
-				}
 			}
 		}
-		this.arrayData = tempArray;
+		
+		// Copy relevant values
+		int temp = 0;
+		Object[] newArray = new Object[size];
+		for(int z = 0; z < this.arrayData.length; z++) {
+			if(this.arrayData[z] != null) {
+				newArray[temp] = this.arrayData[z];
+				temp++;
+			}
+		}
+		
+		this.arrayData = newArray;
+		
 	}
 }

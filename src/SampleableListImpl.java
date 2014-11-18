@@ -15,6 +15,11 @@ public class SampleableListImpl extends LinkedListImpl implements SampleableList
 			boolean skipNext = true;
 			ReturnObjectImpl currentObject = this.child;
 			
+			/*
+			 * This method will return all odd elements of our list
+			 * regardless of it's size
+			 */
+			
 			for(int i = 0; i < this.childCount; i++) {
 				if(skipNext) {
 					skipNext = false;

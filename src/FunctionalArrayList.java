@@ -17,9 +17,12 @@ public class FunctionalArrayList extends ArrayListImpl implements FunctionalList
 		return newDataObject;
 	}
 
-	// Return everything except first element in our array list
 	public FunctionalList rest() {
 		FunctionalArrayList myList = new FunctionalArrayList();
+		/*
+		 * All we need to do is loop through each item in our array
+		 * but only those items after first index
+		 */
 		for(int i = 1; i < this.arrayData.length; i++) { // Start at 1
 			myList.add(this.get(i));
 		}

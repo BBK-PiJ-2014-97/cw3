@@ -34,7 +34,8 @@ public class ImprovedStackImpl implements ImprovedStack{
 
 	public ImprovedStack reverse() {
 		ImprovedStackImpl returnStack = new ImprovedStackImpl();
-		for(int i = this.internalStack.internalList.size(); i > 0; i--) { // Loop list in reverse order
+		// Loop list in reverse order, and add to the new stack we created
+		for(int i = this.internalStack.internalList.size(); i > 0; i--) {
 			returnStack.push(this.internalStack.internalList.get(i));
 		}
 		return returnStack;
@@ -42,6 +43,7 @@ public class ImprovedStackImpl implements ImprovedStack{
 
 	public void remove(Object object) {
 		for(int i = 0; i < this.size(); i++) {
+			// Make sure we are the same Object type
 			if(this.internalStack.internalList.get(i).getReturnValue().equals(object)) {
 				this.internalStack.internalList.remove(i);
 			}

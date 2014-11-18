@@ -96,14 +96,10 @@ public class LinkedListImpl implements List{
 			ReturnObjectImpl currentObject = this.child;
 			
 			// Loop thru each ReturnObjectImpl.child until we reach end
-//			while(currentObject.child != null) {
-//				currentObject = currentObject.child;
-//				System.out.println("Looped");
-//			}
 			for(int i = 1; i < this.childCount; i++) {
 				currentObject = currentObject.child;
 			}
-			// Now we've reached end, we set the value
+			// Now we've reached end, we set the child value of last object
 			currentObject.child = newDataObject;
 			this.childCount++;
 		}

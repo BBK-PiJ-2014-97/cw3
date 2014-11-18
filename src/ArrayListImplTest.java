@@ -65,17 +65,22 @@ public class ArrayListImplTest {
 		assertNotEquals(null, myArrayList.get(0).getReturnValue());
 	}
 	
-//	@Test
-//	public void testCanAddValueToSpecificIndex() {
-//		System.out.println("Begin Test: testCanRemoveValueFromSpecificIndex");
-//		
-//		ArrayListImpl myArrayList = new ArrayListImpl();
-//		
-//		myArrayList.add("Elmario");
-//		assertNotEquals(null, myArrayList.get(0).getReturnValue());
-//		
-//		myArrayList.add(1, "Test");
-//		assertNotEquals(null, myArrayList.get(1).getReturnValue());	
-//	}
-	
+	@Test
+	public void testCanAddValueToSpecificIndex() {
+		System.out.println("Begin Test: testCanAddValueToSpecificIndex");
+		
+		ArrayListImpl myArrayList = new ArrayListImpl();
+		
+		myArrayList.add("Elmario"); // 0
+		assertNotEquals(null, myArrayList.get(0).getReturnValue());
+
+		myArrayList.add("Elmario"); // 1
+		myArrayList.add("Elmario"); // 2
+		myArrayList.add("Elmario"); // 3
+		myArrayList.add("Elmario"); // 4
+		myArrayList.add("Elmario"); // 5
+		
+		myArrayList.add(3, "Test");
+		assertNotEquals(null, myArrayList.get(4).getReturnValue());	
+	}
 }
